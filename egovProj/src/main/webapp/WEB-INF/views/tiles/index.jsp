@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>  
 <!DOCTYPE html>
+<html class>
 <html>
 <head>
   <meta charset="utf-8">
@@ -34,7 +35,8 @@
   <link rel="stylesheet" href="/resources/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/resources/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="sidebar-mini sidebar-closed sidebar-collapse">
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
 <div class="wrapper">
 
   <!-- Preloader -->

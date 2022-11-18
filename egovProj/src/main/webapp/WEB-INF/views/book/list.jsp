@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">DataTable with default features</h3>
@@ -35,12 +36,12 @@
 							<c:forEach var="bookVO" items="${bookVOList}">
 								<c:if test="${stat.count%2!=0}"><tr class="odd"></c:if>
 								<c:if test="${stat.count%2==0}"><tr class="even"></c:if>
-									<td class="dtr-control sorting_1" tabindex="0">${bookVO.bookId}</td>
-									<td>${bookVO.title}</td>
-									<td>${bookVO.category}</td>
-									<td>${bookVO.price}</td>
-									<td>${bookVO.insertDate}</td>
-								</tr>
+										<td class="dtr-control sorting_1" tabindex="0">${bookVO.bookId}</td>
+										<td><a href="/book/detail?bookId=${bookVO.bookId}">${bookVO.title}</a></td>
+										<td>${bookVO.category}</td>
+										<td><fmt:formatNumber value='${bookVO.price }' pattern='#,###' /></td>
+										<td><fmt:formatDate value='${bookVO.insertDate }' pattern='yyyy.MM.dd' /></td>
+									</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
@@ -61,6 +62,9 @@
 <!-- 						aria-live="polite">Showing 1 to 10 of 57 entries</div> -->
 <!-- 				</div> -->
 <!-- 				<div class="col-sm-12 col-md-7"> -->
+				        <div style="text-align:right">
+				        	<a href="/book/insert" class="btn bg-gradient-primary btn-sm">등록</a>
+				        </div>
 <!-- 					<div class="dataTables_paginate paging_simple_numbers" -->
 <!-- 						id="example1_paginate"> -->
 <!-- 						<ul class="pagination"> -->
