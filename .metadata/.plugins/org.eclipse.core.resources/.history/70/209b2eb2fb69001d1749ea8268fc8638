@@ -1,0 +1,32 @@
+package kr.or.ddit.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.service.GalleryService;
+import kr.or.ddit.service.ProdService;
+import kr.or.ddit.vo.BookVO;
+import kr.or.ddit.vo.ProdVO;
+import lombok.extern.slf4j.Slf4j;
+
+@RequestMapping("/prod")
+@Controller
+@Slf4j
+public class ProdController {
+	
+	@Autowired
+	ProdService prodService;
+	
+	public List<Map<String,Object>> list() {
+		List<Map<String,Object>> prodVOList = this.prodService.amtSale();
+		
+		log.info("bookVOList : " + prodVOList);
+		
+		return prodVOList;
+	}
+	
+}

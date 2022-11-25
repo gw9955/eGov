@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="jquery동작"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="jquery동작"/>
+			<item value="jackson-data"/>
+			<item value="json"/>
+			<item value="btnSear"/>
+			<item value="bookId"/>
+			<item value="&lt;div class=&quot;user-panel mt-3 pb-3 mb-3 d-flex&quot;&gt;"/>
+			<item value="lom"/>
+			<item value="lo."/>
+			<item value="lo,"/>
+			<item value="시큐리"/>
 			<item value="개똥이"/>
 			<item value="att"/>
-			<item value="bookId"/>
 			<item value="MultipartFile"/>
 			<item value="제목"/>
 			<item value="uploadBtn"/>
-			<item value="file"/>
-			<item value="mult"/>
-			<item value="handleImgFileSelect"/>
-			<item value="inner"/>
-			<item value="input_imgs"/>
-			<item value="can"/>
-			<item value="action"/>
-			<item value="form"/>
-			<item value="save"/>
 		</list>
 		<list key="replacehistory">
 			<item value="src=&quot;/resources/adminlte/plugins"/>

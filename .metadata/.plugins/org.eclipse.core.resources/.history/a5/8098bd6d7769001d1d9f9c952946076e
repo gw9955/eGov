@@ -1,0 +1,8 @@
+package kr.or.ddit.service;
+
+import kr.or.ddit.vo.BookVO;
+
+public interface ProdService {
+	// 도서 목록
+	public BookVO list(BookVO bookVO);
+}

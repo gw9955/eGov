@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,12 +71,21 @@ public class GalleryController {
 	@ResponseBody
 	@PostMapping("/updatePost")
 	public AttachVO updatePost(MultipartFile[] uploadFile,
-			@ModelAttribute AttachVO attachVO) {
+			@ModelAttribute AttachVO attachVO,
+			HttpServletRequest request) {
 		log.info("uploadFile : " + uploadFile + ", attachVO : " + attachVO);
 		
 		//업로드 폴더 설정
-		String uploadFolder =
-				"C:\\eGovFrameDev-3.10.0-64bit\\workspace\\egovProj\\src\\main\\webapp\\resources\\upload";
+//		String uploadFolder =
+//				"C:\\eGovFrameDev-3.10.0-64bit\\workspace\\egovProj\\src\\main\\webapp\\resources\\upload";
+		
+	    String absolutePath = 
+	              request.getRealPath(request.getContextPath());
+        log.info("absolutePath : " + absolutePath);
+         
+        String uploadFolder = absolutePath + "\\resourses\\upload";
+         
+        log.info("uploadFolder : " + uploadFolder);
 		
 		//연월일 폴더 생성
 		File uploadPath = new File(uploadFolder,getFolder());
@@ -205,6 +217,8 @@ public class GalleryController {
 	 * 요청 URI : /gallery/regist
 	 * 방식 : get
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
 	@GetMapping("/regist")
 	public String regist(Model model) {
 		

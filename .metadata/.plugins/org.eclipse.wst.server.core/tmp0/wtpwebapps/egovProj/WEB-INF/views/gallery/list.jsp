@@ -36,7 +36,8 @@
 						data-id="/resources/upload${attachVO.filename}"
 						data-title="${bookVO.title}"
 						data-userno="${bookVO.bookId}"
-						data-seq="${attachVO.seq}"> <img
+						data-seq="${attachVO.seq}"
+						data-filename="${attachVO.filename}" > <img
 						src="/resources/upload${attachVO.filename}"
 						class="img-fluid mb-2" alt="white sample">
 					</a>
@@ -53,8 +54,9 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">이것이 톰캣이유~</h4>
-				<input type="text" id="txtUserNo" value="" />
-				<input type="text" id="txtSeq" value="" />
+				<input type="hidden" id="txtUserNo" value="" />
+				<input type="hidden" id="txtSeq" value="" />
+				<input type="hidden" id="txtFilename" value="" />
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">×</span>
@@ -68,6 +70,9 @@
 				<div style="float:right;">
 					<!-- 일반 모드 시작 -->
 					<span id="spn1">
+						<a class="btn btn-app" onclick="fn_download()">
+							<i class="fas fa-save"></i> Save
+						</a>
 						<button type="button" id="edit" class="btn btn-primary">수정</button>
 						<button type="button" id="delete" class="btn btn-danger">삭제</button>
 					</span>
@@ -92,6 +97,7 @@
 		</div>
 	</div>
 </div>
+<iframe id="ifrm" name="ifrm" style="display:none;"></iframe>
 <!-- Default Modal 끝 -->
 <script type="text/javascript">
    $(function() {
@@ -105,12 +111,21 @@
                      let userNo = $(this).data("userno");
                      //data-seq="...."
                      let seq = $(this).data("seq");
-                     console.log("data : " + data + " , title : "+ title + ", userNo " + userNo + " , seq " + seq);
+                     //data-filename="...
+                     let filename = $(this).data("filename");
+                     
+                     //세션 스토리지 활용
+                     sessionStorage.setItem("filename",filename);
+                     
+                     console.log("data : " + data + " , title : "+ title + 
+                    		 ", userNo : " + userNo + " , seq : " + seq + " , filename : " + filename);
+                     
                      $("#body-content").html("<img src=' " + data + " ' style='width:100%;' />");
                      //modal은 하나이고, modal-title 클래스 또한 하나임
                      $(".modal-title").text(title);
                      $("#txtUserNo").val(userNo);
                      $("#txtSeq").val(seq);
+                     $("#txtFilename").val(filename);
                      
                   });
       //el 정보를 j/s  변수에 담음
@@ -305,5 +320,18 @@
     	  });
       });
       //이미지 삭제 끝
+      
    });
+</script>
+<script type="text/javascript">
+//파일 다운로드 함수
+function fn_download() {
+	  //세션 스토리지 활용
+	  let filename = sessionStorage.getItem("filename");
+	  console.log("filename : " + filename);
+	  
+	  let vIfrm = document.getElementById("ifrm");
+	  console.log("vIfrm : " + vIfrm);
+	  vIfrm.src = "/download?fileName="+filename;
+}
 </script>

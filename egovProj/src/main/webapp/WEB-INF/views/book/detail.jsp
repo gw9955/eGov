@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
 <script type="text/javascript" src="/resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 
@@ -80,11 +81,11 @@
 <!--          </div> -->
       </div>
    </div>
+   <sec:csrfInput/>
    </form>
 </div>
 <script type="text/javascript">
 $(function(){
-   alert("jquery동작");
    //수정버튼 클릭-> 수정모드로 전환
    $("#edit").on("click", function(){
       //일반모드

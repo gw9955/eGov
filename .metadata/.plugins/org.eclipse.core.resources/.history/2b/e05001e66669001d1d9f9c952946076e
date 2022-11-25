@@ -1,0 +1,5 @@
+{
+	"cols":[
+		{"id":"","lable":"상품명","pattern":"", type="string"}
+	],
+}

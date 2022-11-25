@@ -3,6 +3,7 @@ package kr.or.ddit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,13 +68,18 @@ public class BookController {
 	public String updatePost(@ModelAttribute BookVO bookVO) {
 		log.info("bookVO : " + bookVO.toString());
 		
-		//회원정보 변경
-		int result = this.bookService.update(bookVO);
+		//merge into에 의해 bookId가 변경될것이므로 미리 bookId를 받아놓자
+		int bookId = bookVO.getBookId();
+		//updatePost(bookVO) -> insertPost(bookVO)
+		int result = this.bookService.insertPost(bookVO);
 		log.info("result : " + result);
 		
-		return "redirect:/book/detail?bookId="+bookVO.getBookId();
+		log.info("after bookVO : " + bookVO.toString());
+		
+		return "redirect:/book/detail?bookId="+bookId;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/insert")
 	public String insert(Model model) {
 		
